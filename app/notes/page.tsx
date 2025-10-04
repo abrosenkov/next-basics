@@ -5,7 +5,7 @@ import { getNotes } from "@/lib/api";
 // import { useState } from "react";
 
 const Notes = async () => {
-  const notes = await getNotes();
+  const response = await getNotes();
   // console.log("notes", notes);
 
   // const Notes = () => {
@@ -22,7 +22,7 @@ const Notes = async () => {
     <section>
       <h1>Notes List</h1>
       {/* <button onClick={handleClick}>Get my notes</button> */}
-      {notes.length > 0 && <NoteList notes={notes} />}
+      {response.notes.length > 0 && <NoteList notes={response.notes} />}
     </section>
   );
 };

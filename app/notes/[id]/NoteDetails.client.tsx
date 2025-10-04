@@ -2,11 +2,13 @@
 
 import { getSingleNote } from "@/lib/api";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React from "react";
 
 const NoteDetailsClient = () => {
   const { id } = useParams<{ id: string }>();
+
+  const router = useRouter();
 
   const {
     data: note,
@@ -22,18 +24,26 @@ const NoteDetailsClient = () => {
 
   if (error || !note) return <p>Some error..</p>;
 
-  const date = new Date(note.createdAt).toLocaleDateString();
-  const handleClick = () => {
-    console.log("Click", note.text);
+  // const date = new Date(note.title).toLocaleDateString();
+  // const handleClick = () => {
+  //   console.log("Click", note.title);
+  // };
+
+  const handleGoBack = () => {
+    const isSure = confirm("A you sure?");
+    if (isSure) {
+      router.back();
+    }
   };
+
   return (
     // <div>NoteDetailsClient</div>
     <>
       <br />
-      <p>{note.text}</p>
+      <p>{note.title}</p>
       <br />
-      <p>{date}</p>
-      <button onClick={handleClick}>Edit</button>
+      <p>{note.content}</p>
+      <button onClick={handleGoBack}>Back</button>
       <br />
     </>
   );

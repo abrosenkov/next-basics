@@ -1,9 +1,12 @@
 // components/Header/Header.tsx
 
+import { getCategories } from "@/lib/api";
 import css from "./Header.module.css";
 import Link from "next/link";
+import CategoriesMenu from "../CategoriesMenu/CategoriesMenu";
 
-const Header = () => {
+const Header = async () => {
+  const categories = await getCategories();
   return (
     <header className={css.header}>
       <Link href="/" aria-label="Home">
@@ -15,7 +18,7 @@ const Header = () => {
             <Link href="/">Home</Link>
           </li>
           <li>
-            <Link href="/notes">Notes</Link>
+            <CategoriesMenu categories={categories} />
           </li>
           <li>
             <Link href="/profile">Profile</Link>

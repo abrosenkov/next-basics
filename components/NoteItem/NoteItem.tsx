@@ -13,10 +13,10 @@ const NoteItem = ({ item }: Props) => {
   return (
     <>
       <li>
-        <Link href={`/notes/${item.id}`}>{item.text}</Link>
-        {/* <p>{item.text}</p>
+        <Link href={`/notes/${item.id}`}>{item.title}</Link>
+        <p>{item.content}</p>
         <br />
-        <p>{date}</p> */}
+        {/* <p>{date}</p> */}
       </li>
       <br />
       <hr />
